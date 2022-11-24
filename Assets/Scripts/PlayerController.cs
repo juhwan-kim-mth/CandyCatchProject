@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private bool canMove = true;
     [SerializeField]
+    private float maxPos;
+    [SerializeField]
     private float MoveSpeed;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,11 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         float inputX = Input.GetAxis("Horizontal");
-        transform.position += MoveSpeed * inputX * Time.deltaTime * Vector3.right;
+        var position = transform.position;
+        position += MoveSpeed * inputX * Time.deltaTime * Vector3.right;
+        
+        float xPos = Mathf.Clamp(position.x, -maxPos, maxPos);
+        position = new Vector3(xPos, position.y, position.z);
+        transform.position = position;
     }
 }
