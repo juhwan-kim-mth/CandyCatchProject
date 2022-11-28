@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1691538464964149903}
   - component: {fileID: 1691538464964149901}
   - component: {fileID: 2246250690719605742}
+  - component: {fileID: 4938545760715967760}
   m_Layer: 0
   m_Name: Candy2
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1720446193
+  m_SortingLayerID: -112499099
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1648998455, guid: d5918fcd077f3462e98e2df972ab04ba, type: 3}
@@ -117,9 +118,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03, y: 0.48}
   serializedVersion: 2
   m_Radius: 0.44
+--- !u!114 &4938545760715967760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691538464964149902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdad5fbf367d4474b7a1f2c2a32107e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
