@@ -24,5 +24,10 @@ public class CandyScript : MonoBehaviour
             //Increment score
             Destroy(gameObject);
         }
+        else if (collider.gameObject.tag == "Boundary")
+        {
+            //Decrease Lives
+            Destroy(gameObject);
+        }
     }
 }
