@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool canMove = true;
+    public bool canMove = true;
     [SerializeField]
     private float maxPos;
     [SerializeField]
