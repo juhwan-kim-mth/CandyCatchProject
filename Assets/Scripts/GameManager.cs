@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,5 +63,15 @@ public class GameManager : MonoBehaviour
         CandySpawner.instance.StopSpawnCandies();
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
         GameOverPanel.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
