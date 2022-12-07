@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject LivesHolder;
     public GameObject GameOverPanel;
-    [FormerlySerializedAs("scoreText")] public Text ScoreText;
+    [FormerlySerializedAs("scoreText")] public TMP_Text ScoreText;
     bool _gameOver;
     int _lives = 3;
     int _score;
