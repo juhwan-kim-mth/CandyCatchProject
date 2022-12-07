@@ -1,67 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
     public GameObject LivesHolder;
     public GameObject GameOverPanel;
-    public Text scoreText;
-    private bool gameOver = false;
-    private int lives = 3;
+    [FormerlySerializedAs("scoreText")] public Text ScoreText;
+    bool _gameOver;
+    int _lives = 3;
+    int _score;
 
     void Awake()
     {
-        instance = this;
-    }
-    private int score=0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instance = this;
     }
 
     public void Increment()
     {
-        if (!gameOver)
-        {
-            score++;
-            scoreText.text = score.ToString();
-            // print(score);
-        }
-        
+        if (_gameOver) return;
+        _score++;
+        ScoreText.text = _score.ToString();
     }
 
     public void DecreaseLife()
     {
-        if (lives > 0)
+        if (_lives > 0)
         {
-            lives--;
-            print(lives);
-            LivesHolder.transform.GetChild(lives).gameObject.SetActive(false);
-            
+            _lives--;
+            print(_lives);
+            LivesHolder.transform.GetChild(_lives).gameObject.SetActive(false);
         }
 
-        if (lives <= 0)
+        if (_lives <= 0)
         {
             GameOver();
         }
     }
 
+    // XXX(Juhwan): 외부에서 사용될 계획이 있어서 public으로 선언
+    // ReSharper disable once MemberCanBePrivate.Global
     public void GameOver()
     {
-        gameOver = true;
-        CandySpawner.instance.StopSpawnCandies();
-        GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
+        _gameOver = true;
+        CandySpawner.Instance.StopSpawnCandies();
+        GameObject.Find("Player").GetComponent<PlayerController>().CanMove = false;
         GameOverPanel.SetActive(true);
     }
 

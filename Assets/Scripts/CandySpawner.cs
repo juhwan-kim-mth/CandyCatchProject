@@ -1,43 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Serialization;
 
 public class CandySpawner : MonoBehaviour
 {
-    public static CandySpawner instance;
-    
-    
-    [SerializeField] private float maxX;
-    [SerializeField] private float spawnInterval;
-    [SerializeField] GameObject[] Candies;
-    
-    // Start is called before the first frame update
-    private void Awake()
+    public static CandySpawner Instance;
+
+
+    [FormerlySerializedAs("maxX")] [SerializeField]
+    float _maxX;
+
+    [FormerlySerializedAs("spawnInterval")] [SerializeField]
+    float _spawnInterval;
+
+    [FormerlySerializedAs("Candies")] [SerializeField]
+    GameObject[] _candies;
+
+    void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
     }
+
     void Start()
     {
-        //SpawnCandy();
         StartSpawnCandies();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void SpawnCandy()
     {
-        int rand = Random.Range(0, Candies.Length);
-        float randomX = Random.Range(-maxX, maxX);
-        Vector3 randomPos = new Vector3(randomX, transform.position.y, transform.position.z);
-        Instantiate(Candies[rand], randomPos, transform.rotation);
+        var rand = Random.Range(0, _candies.Length);
+        var randomX = Random.Range(-_maxX, _maxX);
+        var transform1 = transform;
+        var position = transform1.position;
+        var randomPos = new Vector3(randomX, position.y, position.z);
+        Instantiate(_candies[rand], randomPos, transform1.rotation);
     }
 
     IEnumerator SpawnCandies()
@@ -46,7 +46,7 @@ public class CandySpawner : MonoBehaviour
         while (true)
         {
             SpawnCandy();
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(_spawnInterval);
         }
     }
 

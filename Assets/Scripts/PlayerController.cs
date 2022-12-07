@@ -1,24 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool canMove = true;
-    [SerializeField]
-    private float maxPos;
-    [SerializeField]
-    private float MoveSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [FormerlySerializedAs("canMove")] 
+    public bool CanMove = true;
+
+    [FormerlySerializedAs("maxPos")] [SerializeField]
+    float _maxPos;
+
+    [FormerlySerializedAs("MoveSpeed")] [SerializeField]
+    float _moveSpeed;
 
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (CanMove)
         {
             Move();
         }
@@ -26,11 +23,11 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        float inputX = Input.GetAxis("Horizontal");
+        var inputX = Input.GetAxis("Horizontal");
         var position = transform.position;
-        position += MoveSpeed * inputX * Time.deltaTime * Vector3.right;
-        
-        float xPos = Mathf.Clamp(position.x, -maxPos, maxPos);
+        position += _moveSpeed * inputX * Time.deltaTime * Vector3.right;
+
+        var xPos = Mathf.Clamp(position.x, -_maxPos, _maxPos);
         position = new Vector3(xPos, position.y, position.z);
         transform.position = position;
     }
